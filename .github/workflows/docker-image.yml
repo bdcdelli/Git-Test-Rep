@@ -21,4 +21,4 @@ jobs:
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag 65732610/test_python_image:$(date +%s)
     - name: Docker push
-      run: docker push ${{secrects.DOCKER_USER}}/Test_repository
+      run: docker push ${{secrects.DOCKER_USER}}/test_repository
