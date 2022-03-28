@@ -1,0 +1,24 @@
+name: Test Python Docker Image
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Docker login
+      env:
+          DOCKER_USER: ${{secrects.DOCKER_USER}}
+          DOCKER_PASSWORD: ${{secrects.DOCKER_PASSWORD}}
+      run:
+          docker run -u DOCKER_USER -p DOCKER_PASSWORD
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag 65732610/test_python_image:$(date +%s)
+    - name: Docker push
+      run: docker push ${{secrects.DOCKER_USER}}/test_repository
