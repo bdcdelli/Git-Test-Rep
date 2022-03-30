@@ -9,9 +9,14 @@ pipeline {
                 bat 'git clone https://github.com/bdcdelli/Git-Test-Rep.git'
             }
         }
-        stage('Execute python file') {
+        // stage('Execute python file') {
+        //     steps {
+        //         bat 'python Git-Test-Rep/Test_files/hello.py'
+        //     }
+        // }
+        stage('Build') {
             steps {
-                bat 'python Git-Test-Rep/Test_files/hello.py'
+                zip zipFile: 'Git-Test-Rep.zip', archive: False, dir: 'Git-Test-Rep', overwrite: 'true'
             }
         }
         
